@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Regiões</title>
+</head>
+<body>
+    <h1>Gráfico de Regiões</h1>
+
+    <form method="get" action="/">
+        <label for="assunto">Selecione o Assunto:</label>
+        <select name="assunto" id="assunto">
+            <option value="">Todos</option>
+            {% for a in assuntos %}
+                <option value="{{ a }}" {% if a == assunto %}selected{% endif %}>{{ a }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="regiao">Selecione a Região:</label>
+        <select name="regiao" id="regiao">
+            <option value="">Todas</option>
+            {% for r in regioes %}
+                <option value="{{ r }}" {% if r == regiao %}selected{% endif %}>{{ r }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Atualizar">
+    </form>
+
+    <div>
+        <h2>Distribuição por Região</h2>
+        <div>{{ graph_html_regiao|safe }}</div>
+    </div>
+</body>
+</html>
